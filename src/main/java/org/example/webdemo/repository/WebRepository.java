@@ -1,17 +1,19 @@
 package org.example.webdemo.repository;
 
+import org.example.webdemo.config.DatabaseConfig;
+import org.springframework.stereotype.Repository;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import org.example.webdemo.config.DatabaseConfig;
 
+@Repository
 public class WebRepository {
     public void save(String title) throws SQLException {
-        // Veritabanı bağlantı bilgilerini properties dosyasından al
-        String dbUrl = DatabaseConfig.getUrl();
-        String username = DatabaseConfig.getUsername();
-        String password = DatabaseConfig.getPassword();
+        String dbUrl = DatabaseConfig.DB_URL;
+        String username = DatabaseConfig.USERNAME;
+        String password = DatabaseConfig.PASSWORD;
 
         try (Connection connection = DriverManager.getConnection(dbUrl, username, password)) {
             String sql = "INSERT INTO haberler (title) VALUES (?)";

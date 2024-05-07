@@ -2,18 +2,18 @@ package org.example.webdemo.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
 import org.example.webdemo.repository.WebRepository;
 import org.example.webdemo.service.WebService;
 import org.example.webdemo.service.impl.WebServiceImpl;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class WebController {
     private final WebService webService = new WebServiceImpl();
     private final WebRepository webRepository = new WebRepository() {
         @Override
         public void save(String title) throws SQLException {
-            // Burada veritabanına kaydetme işlemi gerçekleştirilebilir.
-            System.out.println("Veri başarıyla veritabanına kaydedildi.");
+            System.out.println("Veritabanına kaydedildi.");
         }
     };
 

@@ -5,8 +5,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.example.webdemo.service.WebService;
+import org.springframework.stereotype.Service;
 import java.io.IOException;
 
+@Service
 public class WebServiceImpl implements WebService {
     private final String url = "https://www.ntv.com.tr";
     private final String cssQuery = "title";
