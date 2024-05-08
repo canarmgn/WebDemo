@@ -5,25 +5,22 @@ import java.sql.SQLException;
 import org.example.webdemo.repository.WebRepository;
 import org.example.webdemo.service.WebService;
 import org.example.webdemo.service.impl.WebServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WebController {
-    private final WebService webService = new WebServiceImpl();
-    private final WebRepository webRepository = new WebRepository() {
-        @Override
-        public void save(String title) throws SQLException {
-            System.out.println("Veritabanına kaydedildi.");
-        }
-    };
 
-    public void saveTitleToDatabase() {
-        try {
-            String title = webService.getTitle();
-            webRepository.save(title);
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-            System.err.println("Bir hata oluştu.");
-        }
+    @Autowired
+    WebService webService;
+
+    @PostMapping("/web")
+    public String getTitle() throws SQLException, IOException {
+       return webService.getTitle();
+
+
     }
+
+
 }

@@ -10,6 +10,8 @@ import java.sql.SQLException;
 
 @Repository
 public class WebRepository {
+
+
     public void save(String title) throws SQLException {
         String dbUrl = DatabaseConfig.DB_URL;
         String username = DatabaseConfig.USERNAME;
